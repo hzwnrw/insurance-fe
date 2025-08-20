@@ -1,0 +1,6 @@
+<div>Homepage Component Loaded</div>
+<div *ngFor="let card of cards" class="card">
+  <h2>{{ card.title }}</h2>
+  <p>{{ card.description }}</p>
+  <button (click)="navigate(card.link)">View Details</button>
+</div>
