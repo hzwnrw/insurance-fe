@@ -1,6 +1,18 @@
-<div>Homepage Component Loaded</div>
-<div *ngFor="let card of cards" class="card">
-  <h2>{{ card.title }}</h2>
-  <p>{{ card.description }}</p>
-  <button (click)="navigate(card.link)">View Details</button>
+<div class="homepage-container">
+  <h1>Homepage Component Loaded</h1>
+
+  <!-- Client-only loading -->
+  <div *ngIf="loading">Loading insurances...</div>
+
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div *ngFor="let card of cards" class="card">
+    <h2>{{ card.title }}</h2>
+    <p>{{ card.description }}</p>
+    <button (click)="navigate(card.link)">View Details</button>
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && cards.length === 0">
+    No insurances found.
+  </div>
 </div>

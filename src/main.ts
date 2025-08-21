@@ -1,12 +1,12 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http'; // Import provideHttpClient
-import { HomepageComponent } from './app/features/homepage/homepage.component';
-import { routes } from './app/app.routes'; // Adjust the path to your routes file
+import { provideHttpClient } from '@angular/common/http';
+import { App } from './app/app';
+import { routes } from './app/app.routes';
 
-bootstrapApplication(HomepageComponent, {
+bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
-    provideHttpClient(), // Use provideHttpClient to provide HttpClient
+    provideHttpClient(), 
   ],
 }).catch(err => console.error(err));

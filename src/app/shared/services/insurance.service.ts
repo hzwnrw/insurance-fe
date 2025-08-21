@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-interface Insurance {
+export interface Insurance {
   id: number;
   name: string;
   category: string;
@@ -11,7 +11,7 @@ interface Insurance {
 }
 
 @Injectable({
-  providedIn: 'root' // Use 'root' to make the service available globally
+  providedIn: 'root'
 })
 export class InsuranceService {
   private apiUrl = 'http://localhost:1204/api/insurance';
@@ -26,6 +26,6 @@ export class InsuranceService {
 
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error.message);
-    return throwError('Something went wrong; please try again later.');
+    return throwError(() => new Error('Something went wrong; please try again later.'));
   }
 }

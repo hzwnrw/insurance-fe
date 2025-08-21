@@ -3,5 +3,4 @@ import { HomepageComponent } from './features/homepage/homepage.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent },
-  // Add other routes here
 ];

@@ -1,11 +1,25 @@
-.card-container {
+.homepage-container {
+  padding: 1rem;
+}
+
+.loading {
+  color: blue;
+}
+
+.error {
+  color: red;
+}
+
+.cards {
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .card {
-  margin: 10px;
-  padding: 20px;
   border: 1px solid #ccc;
-  cursor: pointer;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 200px;
 }
