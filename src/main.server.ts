@@ -8,7 +8,7 @@ const bootstrap = () =>
     ...config,
     providers: [
       ...(config.providers || []),
-      provideHttpClient(), // ✅ HTTP client available in SSR (optional)
+      provideHttpClient(), // HttpClient also available in SSR
     ],
   });
 

@@ -1,8 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { InsuranceService } from '../../shared/services/insurance.service';
-import { NgZone } from '@angular/core';
+import { InsuranceService, Insurance } from '../../shared/services/insurance.service';
 
 interface Card {
   title: string;
@@ -22,11 +21,9 @@ export class HomepageComponent implements OnInit {
   loading = true;
   errorMessage = '';
 
-  private ngZone = inject(NgZone); // ✅ inject NgZone
+  private ngZone = inject(NgZone);
 
-  constructor(private router: Router, private insuranceService: InsuranceService) {
-    console.log('HomepageComponent constructor');
-  }
+  constructor(private router: Router, private insuranceService: InsuranceService) {}
 
   ngOnInit(): void {
     console.log('HomepageComponent ngOnInit');
@@ -34,19 +31,17 @@ export class HomepageComponent implements OnInit {
   }
 
   fetchInsurances(): void {
-    console.log('Fetching insurances...');
     this.loading = true;
     this.errorMessage = '';
 
     this.insuranceService.getInsurances().subscribe({
-      next: insurances => {
-        // Run inside Angular zone to ensure DOM updates
+      next: (insurances: Insurance[]) => {
         this.ngZone.run(() => {
           console.log('Insurances fetched:', insurances);
-          this.cards = insurances.map(insurance => ({
-            title: insurance.name,
-            description: `Category: ${insurance.category}, Price: $${insurance.price}`,
-            link: `/insurance/${insurance.id}`
+          this.cards = insurances.map(i => ({
+            title: i.name,
+            description: `Category: ${i.category}, Price: $${i.price}`,
+            link: `/insurance/${i.id}`
           }));
           this.loading = false;
         });
