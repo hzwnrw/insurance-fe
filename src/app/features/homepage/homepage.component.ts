@@ -41,7 +41,7 @@ export class HomepageComponent implements OnInit {
           this.cards = insurances.map(i => ({
             title: i.name,
             description: `Category: ${i.category}, Price: $${i.price}`,
-            link: `/insurance/${i.id}`
+            link: `/plan/${i.id}`
           }));
           this.loading = false;
         });

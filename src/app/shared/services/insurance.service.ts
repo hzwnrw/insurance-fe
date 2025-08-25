@@ -10,6 +10,18 @@ export interface Insurance {
   price: number;
 }
 
+export interface InsuranceDetail {
+  id: number; 
+  coverageDetails?: string;
+  coverageLimit: number;
+  endDate: string;
+  insuranceId: number;
+  policyStatus: string;
+  premiumAmount: number;
+  startDate: string;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +35,12 @@ export class InsuranceService {
       catchError(this.handleError)
     );
   }
+
+  getInsuranceById(id: number | string): Observable<InsuranceDetail> {
+    return this.http.get<InsuranceDetail>(`${this.apiUrl}/detail/${id}`)
+        .pipe(catchError(this.handleError));
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error.message);

@@ -1,0 +1,39 @@
+<div *ngIf="insuranceDetail" class="insurance-detail-container">
+  <h1>Insurance Details</h1>
+  <p><strong>Coverage:</strong> {{ insuranceDetail.coverageDetails }}</p>
+  <p><strong>Coverage Limit:</strong> {{ insuranceDetail.coverageLimit }}</p>
+  <p><strong>Start Date:</strong> {{ insuranceDetail.startDate }}</p>
+  <p><strong>End Date:</strong> {{ insuranceDetail.endDate }}</p>
+  <p><strong>Policy Status:</strong> {{ insuranceDetail.policyStatus }}</p>
+  <p><strong>Base Premium:</strong> ${{ insuranceDetail.premiumAmount }}</p>
+
+  <hr />
+
+  <h2>Premium Calculator</h2>
+  <form (ngSubmit)="calculatePremium()" #calcForm="ngForm" class="calculator-form">
+    <label>
+      Age:
+      <input type="number" [(ngModel)]="age" name="age" required />
+    </label>
+
+    <label>
+      Sum Insured:
+      <input type="number" [(ngModel)]="sumInsured" name="sumInsured" required />
+    </label>
+
+    <label>
+      Duration (years):
+      <input type="number" [(ngModel)]="duration" name="duration" required />
+    </label>
+
+    <button type="submit">Calculate Premium</button>
+  </form>
+
+  <div *ngIf="estimatedPremium !== null" class="result">
+    <h3>Estimated Premium: ${{ estimatedPremium }}</h3>
+  </div>
+</div>
+
+<div *ngIf="!insuranceDetail">
+  Loading insurance details...
+</div>
