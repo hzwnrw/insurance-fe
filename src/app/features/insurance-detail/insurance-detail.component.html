@@ -1,39 +1,79 @@
-<div *ngIf="insuranceDetail" class="insurance-detail-container">
-  <h1>Insurance Details</h1>
-  <p><strong>Coverage:</strong> {{ insuranceDetail.coverageDetails }}</p>
-  <p><strong>Coverage Limit:</strong> {{ insuranceDetail.coverageLimit }}</p>
-  <p><strong>Start Date:</strong> {{ insuranceDetail.startDate }}</p>
-  <p><strong>End Date:</strong> {{ insuranceDetail.endDate }}</p>
-  <p><strong>Policy Status:</strong> {{ insuranceDetail.policyStatus }}</p>
-  <p><strong>Base Premium:</strong> ${{ insuranceDetail.premiumAmount }}</p>
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+  <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width: 750px; width: 100%;">
+    <div class="card-body">
+      <h3 class="text-center mb-4 fw-bold text-primary">Insurance Premium Calculator</h3>
 
-  <hr />
+      <form [formGroup]="insuranceForm">
+        <div class="row g-4">
+          <!-- Coverage Details (Read-only) (ngSubmit)="onSubmit()"-->
+          <div class="col-12">
+            <label class="form-label fw-semibold">Coverage Details</label>
+            <textarea class="form-control rounded-3 readonly-field" formControlName="coverageDetails" rows="3" readonly></textarea>
+          </div>
+          
+          <!-- Coverage Limit / Sum Insured (Editable) -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Coverage Limit</label>
+            <input type="number" class="form-control rounded-3" formControlName="coverageLimit">
+          </div>
 
-  <h2>Premium Calculator</h2>
-  <form (ngSubmit)="calculatePremium()" #calcForm="ngForm" class="calculator-form">
-    <label>
-      Age:
-      <input type="number" [(ngModel)]="age" name="age" required />
-    </label>
+          <!-- Age (Editable) -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Age</label>
+            <input type="number" class="form-control rounded-3" formControlName="age">
+          </div>
 
-    <label>
-      Sum Insured:
-      <input type="number" [(ngModel)]="sumInsured" name="sumInsured" required />
-    </label>
+          <!-- Policy Status (Read-only) -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Policy Status</label>
+            <input type="text" class="form-control rounded-3 readonly-field" formControlName="policyStatus" readonly>
+          </div>
 
-    <label>
-      Duration (years):
-      <input type="number" [(ngModel)]="duration" name="duration" required />
-    </label>
+          <!-- Duration / Months (Editable) -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Duration (Months)</label>
+            <input type="number" class="form-control rounded-3" formControlName="months">
+          </div>
 
-    <button type="submit">Calculate Premium</button>
-  </form>
+          <!-- Start Date (Read-only) -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Start Date</label>
+            <input type="date" class="form-control rounded-3 readonly-field" formControlName="startDate" readonly>
+          </div>
 
-  <div *ngIf="estimatedPremium !== null" class="result">
-    <h3>Estimated Premium: ${{ estimatedPremium }}</h3>
+          <!-- End Date (Read-only) -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">End Date</label>
+            <input type="date" class="form-control rounded-3 readonly-field" formControlName="endDate" readonly>
+          </div>
+
+          <!-- Base Premium (Read-only) -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Base Premium</label>
+            <input type="number" class="form-control rounded-3 readonly-field" formControlName="premiumAmount" readonly>
+          </div>
+        </div>
+
+        <!-- Total Premium Calculator -->
+        <div class="mt-5 text-center">
+          <div class="p-4 rounded-4 shadow-sm d-flex flex-column align-items-center"
+               style="background: linear-gradient(135deg, #f0932b, #e84118); color: #ffffff;">
+            <span class="d-block fw-semibold fs-5 text-shadow">
+              Total Premium
+            </span>
+            <span class="fw-bold fs-2 text-shadow">
+              {{ totalPremium | currency:'MYR':'symbol' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Submit 
+        <div class="mt-4 text-center">
+          <button type="submit" class="btn btn-success btn-lg px-5 rounded-pill shadow-sm" [disabled]="insuranceForm.invalid">
+            Submit
+          </button>
+        </div> -->
+      </form>
+    </div>
   </div>
-</div>
-
-<div *ngIf="!insuranceDetail">
-  Loading insurance details...
 </div>

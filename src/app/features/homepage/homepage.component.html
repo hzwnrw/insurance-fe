@@ -1,18 +1,31 @@
-<div class="homepage-container">
-  <h1>Homepage Component Loaded</h1>
+<div class="container py-5">
+  <h1 class="text-center mb-5 fw-bold text-primary">Insurance Homepage</h1>
 
-  <div *ngIf="loading" class="loading">Loading insurances...</div>
-  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center text-secondary fs-5 mb-4">
+    Loading insurances...
+  </div>
 
-  <div *ngIf="!loading && cards.length > 0" class="cards">
-    <div *ngFor="let card of cards" class="card">
-      <h2>{{ card.title }}</h2>
-      <p>{{ card.description }}</p>
-      <button (click)="navigate(card.link)">View Details</button>
+  <!-- Error -->
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Cards -->
+  <div *ngIf="!loading && cards.length > 0" class="row g-4">
+    <div *ngFor="let card of cards" class="col-md-4">
+      <div class="card h-100 shadow-sm rounded-4 hover-scale">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-bold">{{ card.title }}</h5>
+          <p class="card-text flex-grow-1">{{ card.description }}</p>
+          <button class="btn btn-primary mt-3" (click)="navigate(card.link)">View Details</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div *ngIf="!loading && !errorMessage && cards.length === 0">
+  <!-- No data -->
+  <div *ngIf="!loading && !errorMessage && cards.length === 0" class="text-center text-muted fs-5 mt-4">
     No insurances found.
   </div>
 </div>

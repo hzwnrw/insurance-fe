@@ -1,25 +1,8 @@
-.homepage-container {
-  padding: 1rem;
+.hover-scale {
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.loading {
-  color: blue;
-}
-
-.error {
-  color: red;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.card {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 8px;
-  width: 200px;
+.hover-scale:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }

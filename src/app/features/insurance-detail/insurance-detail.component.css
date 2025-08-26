@@ -1,36 +1,11 @@
-.insurance-detail-container {
-  max-width: 600px;
-  margin: auto;
-  padding: 1rem;
+/* Read-only fields like Policy Status */
+.readonly-field {
+  background-color: #f8f9fa; /* same as Bootstrap bg-light */
+  cursor: not-allowed;
+  color: #6c757d; /* gray text */
 }
 
-.calculator-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.calculator-form input {
-  padding: 0.5rem;
-  width: 100%;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  padding: 0.6rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.result {
-  margin-top: 1rem;
-  font-size: 1.2rem;
-  font-weight: bold;
+/* Text shadow for Total Premium */
+.text-shadow {
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
