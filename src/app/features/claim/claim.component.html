@@ -1,0 +1,69 @@
+<div class="container mt-4">
+  <h2>Claims</h2>
+
+  <!-- Add Button -->
+  <a routerLink="/claims/new" class="btn btn-primary mb-3">
+    Add Claim
+  </a>
+
+  <!-- Claims Table -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Policy ID</th>
+        <th>Reason</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let claim of claims">
+        <td>{{ claim.id }}</td>
+        <td>{{ claim.name }}</td>
+        <td>{{ claim.policyID }}</td>
+        <td>{{ claim.claimReason }}</td>
+        <td>{{ claim.claimAmount }}</td>
+        <td>{{ claim.status }}</td>
+        <td>
+          <button class="btn btn-sm btn-success me-1"
+                  (click)="updateStatus(claim.id, 'APPROVED')"
+                  [disabled]="claim.status === 'APPROVED'">
+            Approve
+          </button>
+          <button class="btn btn-sm btn-danger"
+                  (click)="updateStatus(claim.id, 'REJECTED')"
+                  [disabled]="claim.status === 'REJECTED'">
+            Reject
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination -->
+  <div class="d-flex justify-content-center mt-3">
+    <button class="btn btn-outline-primary me-1" 
+            (click)="prevPage()" 
+            [disabled]="page === 0">
+      Previous
+    </button>
+
+    <ng-container *ngFor="let p of pageNumbers">
+      <button class="btn me-1"
+              [ngClass]="{'btn-primary': page === p, 'btn-outline-primary': page !== p}"
+              (click)="goToPage(p)">
+        {{ p + 1 }}
+      </button>
+    </ng-container>
+
+    <button class="btn btn-outline-primary ms-1" 
+            (click)="nextPage()" 
+            [disabled]="page + 1 >= totalPages">
+      Next
+    </button>
+  </div>
+
+</div>

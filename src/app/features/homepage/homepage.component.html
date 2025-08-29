@@ -28,4 +28,11 @@
   <div *ngIf="!loading && !errorMessage && cards.length === 0" class="text-center text-muted fs-5 mt-4">
     No insurances found.
   </div>
+
+  <div class="text-center mb-4">
+    <button class="btn btn-success btn-lg" (click)="navigateToClaims()">
+      Claims
+    </button>
+  </div>
+
 </div>

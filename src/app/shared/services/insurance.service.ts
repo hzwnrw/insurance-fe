@@ -27,15 +27,16 @@ export interface InsuranceDetail {
   providedIn: 'root'
 })
 export class InsuranceService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = `${environment.apiUrl}/api/insurance`;
 
   constructor(private http: HttpClient) {}
 
   getInsurances(): Observable<Insurance[]> {
-    return this.http.post<Insurance[]>(`${this.apiUrl}/all`, {}).pipe(
+    return this.http.get<Insurance[]>(`${this.apiUrl}/all`).pipe(
       catchError(this.handleError)
     );
   }
+
 
   getInsuranceById(id: number | string): Observable<InsuranceDetail> {
     return this.http.get<InsuranceDetail>(`${this.apiUrl}/detail/${id}`)

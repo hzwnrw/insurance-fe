@@ -59,4 +59,9 @@ export class HomepageComponent implements OnInit {
   navigate(link: string): void {
     this.router.navigate([link]);
   }
+
+  navigateToClaims(): void {
+    this.router.navigate(['/claims']); // ✅ redirect to claim page
+  }
+
 }

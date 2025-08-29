@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2>New Claim Submission</h2>
+
+  <form [formGroup]="claimForm" (ngSubmit)="onSubmit()">
+    <div class="mb-2">
+      <label>Name</label>
+      <input type="text" class="form-control" formControlName="name" />
+    </div>
+    <div class="mb-2">
+      <label>Policy ID</label>
+      <input type="text" class="form-control" formControlName="policyID" />
+    </div>
+    <div class="mb-2">
+      <label>Reason</label>
+      <input type="text" class="form-control" formControlName="claimReason" />
+    </div>
+    <div class="mb-2">
+      <label>Amount</label>
+      <input type="number" class="form-control" formControlName="claimAmount" />
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="claimForm.invalid">
+      Submit
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="cancel()">Cancel</button>
+  </form>
+</div>
