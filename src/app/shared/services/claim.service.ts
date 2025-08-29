@@ -29,20 +29,23 @@ export class ClaimService {
 
   constructor(private http: HttpClient) {}
 
-  // ✅ Get pageable claims
+  // Get pageable claims
   getClaims(page: number, size: number): Observable<PageResponse<Claim>> {
-    let params = new HttpParams().set('page', page).set('size', size);
-    return this.http.get<PageResponse<Claim>>(this.apiUrl, { params })
-      .pipe(catchError(this.handleError));
+  const params = new HttpParams()
+    .set('page', page.toString())
+    .set('size', size.toString());
+
+  return this.http.get<PageResponse<Claim>>(`${this.apiUrl}/all`, { params })
+    .pipe(catchError(this.handleError));
   }
 
-  // ✅ Create a new claim
+  // Create a new claim
   addClaim(claim: Claim): Observable<Claim> {
     return this.http.post<Claim>(`${this.apiUrl}/add`, claim)
       .pipe(catchError(this.handleError));
   }
 
-  // ✅ Update status (Approve / Reject)
+  // Update status (Approve / Reject)
   updateStatus(id: number, status: string): Observable<Claim> {
     return this.http.put<Claim>(`${this.apiUrl}/${id}/status?status=${status}`, {})
       .pipe(catchError(this.handleError));
