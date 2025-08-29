@@ -61,7 +61,7 @@ export class HomepageComponent implements OnInit {
   }
 
   navigateToClaims(): void {
-    this.router.navigate(['/claims']); // ✅ redirect to claim page
+    this.router.navigate(['/claims']); // redirect to claim page
   }
 
 }

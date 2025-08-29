@@ -7,7 +7,7 @@ import { ClaimService } from '../../shared/services/claim.service';
 @Component({
   selector: 'app-claim-new',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule], // ✅ RouterModule is required
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './claim-new.component.html',
   styleUrls: ['./claim-new.component.css']
 })
@@ -28,17 +28,17 @@ export class ClaimNewComponent {
     });
   }
 
-  // ✅ Submit with alert and redirect
+  // Submit with alert and redirect
   onSubmit(): void {
     if (this.claimForm.valid) {
       this.claimService.addClaim(this.claimForm.value).subscribe(() => {
-        alert('✅ Claim submitted successfully!');
-        setTimeout(() => this.router.navigate(['/claims']));
+        alert('Claim submitted successfully!');
+        // setTimeout(() => this.router.navigate(['/claims']));
       });
     }
   }
 
-  // ✅ Cancel button redirect
+  // Cancel button redirect
   cancel(): void {
     this.router.navigate(['/claims']);
   }
